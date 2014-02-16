@@ -8,8 +8,8 @@ import org.junit.Test;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.WebTarget;
 
-import static com.jersey.whatnot.testutils.GrizzlyServer.BASE_URI;
-import static com.jersey.whatnot.testutils.GrizzlyServer.startServer;
+import static com.jersey.whatnot.GrizzlyServer.BASE_URI;
+import static com.jersey.whatnot.GrizzlyServer.startServer;
 import static javax.ws.rs.client.ClientBuilder.newClient;
 import static org.junit.Assert.assertEquals;
 

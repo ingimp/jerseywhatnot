@@ -1,5 +1,7 @@
 apply plugin: 'java'
+apply plugin: "application"
 
+mainClassName = 'com.jersey.whatnot.GrizzlyServer'
 sourceCompatibility = 1.7
 version = '1.0'
 
