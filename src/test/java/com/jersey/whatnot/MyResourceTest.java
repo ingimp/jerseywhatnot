@@ -31,7 +31,7 @@ public class MyResourceTest extends JerseyAwareTest {
     }
 
     @Test
-    public void consume_annotation_should_restrict_inbound_data() {
+    public void consume_annotation_should_restrict_inbound_data_as_json() {
         Response responseMsg = target.path("myresource")
                 .request()
                 .post(json(new ClichesMsg(":)", ":(")));
