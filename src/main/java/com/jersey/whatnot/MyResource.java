@@ -25,4 +25,11 @@ public class MyResource {
     public String processPutMethod(@FormParam("hey") String hey) {
         return hey;
     }
+
+    @POST
+    @Consumes("application/json")
+    public String postClichedMessage(ClichesMsg message) {
+        return message.A + " " + message.B;
+    }
+
 }

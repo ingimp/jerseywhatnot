@@ -20,7 +20,7 @@ public class JerseyAwareTest {
         server = startServer();
 
         Client client = newClient();
-        target = client.target(BASE_URI);
+        target = client.target(BASE_URI).register(GrizzlyServer.registeredClasses);
     }
 
     @After
