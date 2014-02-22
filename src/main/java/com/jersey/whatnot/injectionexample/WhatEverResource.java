@@ -6,17 +6,17 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
 @Path("/cdibean")
-public class ResourceWithInjection {
+public class WhatEverResource {
     @Inject
-    private IWillBeInjected injectedObj;
+    private WhatEverService whateverService;
 
-    public ResourceWithInjection() {
+    public WhatEverResource() {
         System.out.println("constructor called");
     }
 
     @GET
     @Produces("text/plain")
     public String getIt() {
-        return injectedObj.getIt();
+        return whateverService.getIt();
     }
 }

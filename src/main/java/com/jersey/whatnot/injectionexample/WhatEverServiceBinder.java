@@ -2,9 +2,9 @@ package com.jersey.whatnot.injectionexample;
 
 import org.glassfish.hk2.utilities.binding.AbstractBinder;
 
-public class IWillBeInjectedBinder extends AbstractBinder {
+public class WhatEverServiceBinder extends AbstractBinder {
     @Override
     protected void configure() {
-        bindFactory(IWillBeInjectedFactory.class).to(IWillBeInjected.class);
+        bindFactory(WhatEverServiceFactory.class).to(WhatEverService.class);
     }
 }
