@@ -1,5 +1,6 @@
 package com.jersey.whatnot;
 
+import com.jersey.whatnot.injectionexample.IWillBeInjectedBinder;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.glassfish.jersey.server.ResourceConfig;
 
@@ -15,7 +16,8 @@ public class GrizzlyServer {
     public static HttpServer startServer() {
         //ResourceConfig is a Jersey implementation of the JAX-RS Application.
         final ResourceConfig resourceConfig = new ResourceConfig()
-                .packages("com.jersey.whatnot"); //auto scan
+                .packages("com.jersey.whatnot") //auto scan
+                .register(new IWillBeInjectedBinder());
 
         // create and start a new instance of grizzly http server
         // exposing the Jersey application at BASE_URI
