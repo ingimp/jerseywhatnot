@@ -10,10 +10,6 @@ public class WhatEverResource {
     @Inject
     private WhatEverService whateverService;
 
-    public WhatEverResource() {
-        System.out.println("constructor called");
-    }
-
     @GET
     @Produces("text/plain")
     public String getIt() {
