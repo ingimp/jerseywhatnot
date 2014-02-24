@@ -1,7 +1,6 @@
 package com.jersey.whatnot;
 
 import org.glassfish.grizzly.http.server.HttpServer;
-import org.glassfish.jersey.server.ResourceConfig;
 
 import java.io.IOException;
 import java.net.URI;
@@ -15,15 +14,10 @@ public class GrizzlyServer {
 
     public static HttpServer startServer() {
         //ResourceConfig is a Jersey implementation of the JAX-RS Application.
-        final ResourceConfig resourceConfig = createResourceConfig();
 
         // create and start a new instance of grizzly http server
         // exposing the Jersey application at BASE_URI
-        return createHttpServer(URI.create(BASE_URI), resourceConfig);
-    }
-
-    private static ResourceConfig createResourceConfig() {
-        return new WhatNotApp();
+        return createHttpServer(URI.create(BASE_URI), new WhatNotApp());
     }
 
     /**
