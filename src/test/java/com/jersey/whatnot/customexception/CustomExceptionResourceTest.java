@@ -18,11 +18,10 @@ public class CustomExceptionResourceTest extends JerseyTest {
                 .register(MyExceptionProvider.class);
     }
 
-
     @Test
     public void exception_should_be_translated_into_response() throws Exception {
         Response resp = target("customexception").request().get();
-        assertThat(resp.getStatus(), is(403));
+        assertThat(resp.getStatus(), is(502));
         assertThat(resp.readEntity(String.class), is("oops"));
     }
 }

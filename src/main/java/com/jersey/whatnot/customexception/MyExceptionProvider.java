@@ -8,7 +8,7 @@ public class MyExceptionProvider implements ExceptionMapper<MyException> {
     @Override
     public Response toResponse(MyException exception) {
         return Response
-                .status(Response.Status.FORBIDDEN)
+                .status(Response.Status.BAD_GATEWAY)
                 .entity(exception.getMessage())
                 .build();
     }
