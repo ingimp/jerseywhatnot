@@ -4,8 +4,8 @@ import org.glassfish.grizzly.http.server.HttpServer;
 
 import javax.ws.rs.client.WebTarget;
 
-import static com.jersey.whatnot.GrizzlyServer.BASE_URI;
-import static com.jersey.whatnot.GrizzlyServer.startServer;
+import static com.jersey.whatnot.app.GrizzlyServer.BASE_URI;
+import static com.jersey.whatnot.app.GrizzlyServer.startServer;
 import static javax.ws.rs.client.ClientBuilder.newClient;
 
 public class JerseyAwareTest {

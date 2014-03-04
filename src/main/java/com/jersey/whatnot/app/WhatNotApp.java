@@ -1,4 +1,4 @@
-package com.jersey.whatnot;
+package com.jersey.whatnot.app;
 
 import com.jersey.whatnot.injectionexample.WhatEverServiceBinder;
 import org.glassfish.jersey.media.sse.SseFeature;

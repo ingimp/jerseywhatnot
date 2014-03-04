@@ -1,6 +1,7 @@
-package com.jersey.whatnot;
+package com.jersey.whatnot.app;
 
 import org.glassfish.grizzly.http.server.HttpServer;
+import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
 
 import java.io.IOException;
 import java.net.URI;
@@ -17,7 +18,7 @@ public class GrizzlyServer {
 
         // create and start a new instance of grizzly http server
         // exposing the Jersey application at BASE_URI
-        return createHttpServer(URI.create(BASE_URI), new WhatNotApp());
+        return GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), new WhatNotApp());
     }
 
     /**
