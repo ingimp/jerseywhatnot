@@ -2,6 +2,9 @@ package com.jersey.whatnot.async;
 
 import com.google.common.base.Function;
 import com.google.common.base.Stopwatch;
+import com.google.common.collect.ContiguousSet;
+import com.google.common.collect.DiscreteDomain;
+import com.google.common.collect.Range;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.test.JerseyTest;
 import org.junit.Test;
@@ -26,7 +29,7 @@ public class CompareAsyncAndSyncResourceTest extends JerseyTest {
         final Stopwatch stopwatch = new Stopwatch();
         stopwatch.start();
 
-        callFiveTimes(new Runnable() {
+        callManyTimes(new Runnable() {
             @Override
             public void run() {
                 System.out.println("sending request");
@@ -46,7 +49,7 @@ public class CompareAsyncAndSyncResourceTest extends JerseyTest {
         final Stopwatch stopwatch = new Stopwatch();
         stopwatch.start();
 
-        callFiveTimes(new Runnable() {
+        callManyTimes(new Runnable() {
             @Override
             public void run() {
                 System.out.println("sending request");
@@ -61,10 +64,11 @@ public class CompareAsyncAndSyncResourceTest extends JerseyTest {
         System.out.println("five clients calling async get at same time " + stopwatch.elapsed(TimeUnit.MILLISECONDS));
     }
 
-    private void callFiveTimes(final Runnable runnable) throws InterruptedException {
+    private void callManyTimes(final Runnable runnable) throws InterruptedException {
+        Iterable<Integer> range = newArrayList(ContiguousSet
+                .create(Range.closed(1, 80), DiscreteDomain.integers()));
 
-        Iterable<Integer> rangeOfFive = newArrayList(1, 2, 3, 4, 5);
-        List<Thread> threads = from(rangeOfFive).transform(new Function<Integer, Thread>() {
+        List<Thread> threads = from(range).transform(new Function<Integer, Thread>() {
             @Override
             public Thread apply(Integer number) {
                 Thread thread = new Thread(runnable);
