@@ -29,6 +29,7 @@ public class CompareAsyncAndSyncResourceTest extends JerseyTest {
         callFiveTimes(new Runnable() {
             @Override
             public void run() {
+                System.out.println("sending request");
                 String resp = target("async-sync/sync-call").request().get().readEntity(String.class);
                 System.out.println("sync returned " + stopwatch.elapsed(TimeUnit.MILLISECONDS));
                 assertThat(resp, is("sync call finished"));

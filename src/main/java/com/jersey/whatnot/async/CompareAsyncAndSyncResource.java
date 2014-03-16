@@ -12,7 +12,9 @@ public class CompareAsyncAndSyncResource {
     @GET
     @Path("sync-call")
     public String syncCall() throws InterruptedException {
+        System.out.println("got request");
         expensiveComputation();
+        System.out.println("computation done");
         return "sync call finished";
     }
 
