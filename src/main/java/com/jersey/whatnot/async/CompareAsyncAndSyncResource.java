@@ -24,8 +24,10 @@ public class CompareAsyncAndSyncResource {
             public void run() {
                 expensiveComputation();
                 asyncResponse.resume("async call finished");
+                System.out.println("resumed");
             }
         }).start();
+        System.out.println("got request");
     }
 
     private void expensiveComputation() {
