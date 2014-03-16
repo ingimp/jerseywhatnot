@@ -12,7 +12,7 @@ public class CompareAsyncAndSyncResource {
     @GET
     @Path("sync-call")
     public String syncCall() throws InterruptedException {
-        sleep(1000);
+        expensiveComputation();
         return "sync call finished";
     }
 
@@ -22,13 +22,17 @@ public class CompareAsyncAndSyncResource {
         new Thread(new Runnable() {
             @Override
             public void run() {
-                try {
-                    sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                expensiveComputation();
                 asyncResponse.resume("async call finished");
             }
         }).start();
+    }
+
+    private void expensiveComputation() {
+        try {
+            sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }
