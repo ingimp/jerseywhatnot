@@ -12,7 +12,7 @@ public class CompareAsyncAndSyncResource {
     @GET
     @Path("sync-call")
     public String syncCall() throws InterruptedException {
-        System.out.println("got request at: " + Thread.currentThread().getId());
+        System.out.println("got request at: " + Thread.currentThread().getName());
         expensiveComputation();
         System.out.println("computation done");
         return "sync call finished";
@@ -29,7 +29,7 @@ public class CompareAsyncAndSyncResource {
                 System.out.println("resumed");
             }
         }).start();
-        System.out.println("got request at: " + Thread.currentThread().getId());
+        System.out.println("got request at: " + Thread.currentThread().getName());
     }
 
     private void expensiveComputation() {
