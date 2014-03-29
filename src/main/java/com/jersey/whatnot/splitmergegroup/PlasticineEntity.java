@@ -50,4 +50,8 @@ public class PlasticineEntity {
     public void setParents(Set<PlasticineEntity> parents) {
         this.parents = parents;
     }
+
+    boolean isSingle() {
+        return getParents().size() == 0 && getChildren().size() == 0;
+    }
 }
