@@ -17,6 +17,8 @@ public class GraphWalker {
     }
 
     public List<PlasticineEntity> walkGraph() {
+        System.out.println("start waling. root: " + plasticine);
+
         return from(walk(plasticine)).filter(new Predicate<PlasticineEntity>() {
             @Override
             public boolean apply(PlasticineEntity input) {
@@ -26,6 +28,7 @@ public class GraphWalker {
     }
 
     private List<PlasticineEntity> walk(PlasticineEntity plasticine) {
+        System.out.println("waling: " + plasticine);
         if (visited.contains(plasticine)) {
             return visited;
         }
