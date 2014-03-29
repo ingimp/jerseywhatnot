@@ -1,6 +1,7 @@
 package com.jersey.whatnot.splitmergegroup;
 
 import com.google.common.base.Predicate;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 
 import java.util.List;
@@ -19,24 +20,33 @@ public class GraphWalker {
     public List<PlasticineEntity> walkGraph() {
         System.out.println("start waling. root: " + plasticine);
 
-        return from(walk(plasticine)).filter(new Predicate<PlasticineEntity>() {
+        ImmutableList<PlasticineEntity> result = from(walk(plasticine)).filter(new Predicate<PlasticineEntity>() {
             @Override
             public boolean apply(PlasticineEntity input) {
                 return !input.isMiddleStatus();
             }
         }).toList();
+
+        System.out.println("finished waling. root: " + plasticine);
+
+        return result;
     }
 
     private List<PlasticineEntity> walk(PlasticineEntity plasticine) {
-        System.out.println("waling: " + plasticine);
         if (visited.contains(plasticine)) {
+            System.out.println("already walked: " + plasticine + ". return.");
             return visited;
         }
+        System.out.println("walking: " + plasticine);
         visited.add(plasticine);
+
         Iterable<PlasticineEntity> adjacent = concat(plasticine.getChildren(), plasticine.getParents());
+        System.out.println("adjacent of: " + plasticine + " are: " + adjacent);
+
         for (PlasticineEntity adjecentPlasticine : adjacent) {
             walk(adjecentPlasticine);
         }
+        System.out.println("finished walking adjacent of: " + plasticine + ". return.");
 
         return visited;
     }
