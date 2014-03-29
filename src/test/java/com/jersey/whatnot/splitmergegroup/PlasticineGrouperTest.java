@@ -8,6 +8,8 @@ import java.util.List;
 
 import static com.google.common.collect.FluentIterable.from;
 import static java.util.Arrays.asList;
+import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
 public class PlasticineGrouperTest {
@@ -65,6 +67,16 @@ public class PlasticineGrouperTest {
         //15和16合并成了17
         //17被拆分成了18和19
         assertTrue(thereIsAGroupThatHasAndOnlyHas(plasticineGroups, 15, 16, 18, 19));
+    }
+
+    @Test
+    public void should_only_have_5_groups() throws Exception {
+        //分组
+        List<List<PlasticineEntity>> plasticineGroups = new PlasticineGrouper().groupPlastines(plasticines);
+
+        //分组结果不应该有重复，应该仅仅有5个分组
+        //参考flyway的seed脚本
+        assertThat(plasticineGroups.size(), is(5));
     }
 
     private boolean thereIsAGroupThatHasAndOnlyHas(List<List<PlasticineEntity>> plasticineGroups, final Integer... ids) {
