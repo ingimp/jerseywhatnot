@@ -37,6 +37,15 @@ public class PlasticineGrouperTest {
         assertTrue(thereIsAGroupThatHasAndOnlyHas(plasticineGroups, 2, 3, 4));
     }
 
+    @Test
+    public void should_group_merge_plasticine() throws Exception {
+        //分组
+        List<List<PlasticineEntity>> plasticineGroups = new PlasticineGrouper().groupPlastines(plasticines);
+
+        //7是由5和6合并出来的
+        assertTrue(thereIsAGroupThatHasAndOnlyHas(plasticineGroups, 5, 6, 7));
+    }
+
     private boolean thereIsAGroupThatHasAndOnlyHas(List<List<PlasticineEntity>> plasticineGroups, final Integer... ids) {
         return from(plasticineGroups).anyMatch(new Predicate<List<PlasticineEntity>>() {
             @Override
