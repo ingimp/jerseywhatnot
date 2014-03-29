@@ -11,8 +11,7 @@
         <property name="hibernate.connection.url">jdbc:postgresql://localhost:5433/pgdbtest</property>
         <property name="connection_pool_size">10</property>
         <property name="show_sql">true</property>
-        <mapping class="com.jersey.whatnot.ormappingspike.DcEntity"/>
-        <mapping class="com.jersey.whatnot.ormappingspike.IEntity"/>
-        <mapping class="com.jersey.whatnot.ormappingspike.VEntity"/>
+
+        <mapping class="com.jersey.whatnot.splitmergegroup.PlasticineEntity"/>
     </session-factory>
 </hibernate-configuration>
