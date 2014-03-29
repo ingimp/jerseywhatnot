@@ -1,0 +1,1 @@
+INSERT INTO plasticine (id) VALUES (1);--橡皮泥1
