@@ -32,3 +32,5 @@ INSERT INTO plasticine_relation (id, oldPlasticineId, newPlasticineId) VALUES (1
 --最后，9和12合并成了14
 
 --这里面9和12是中间状态，其他的要么是原始橡皮泥，要么是最终成果的橡皮泥
+
+--最后的结果里面应该是： (8,10,11,13,14)
