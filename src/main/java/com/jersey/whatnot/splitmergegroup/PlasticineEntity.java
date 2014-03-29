@@ -34,4 +34,20 @@ public class PlasticineEntity {
     public void setId(Integer id) {
         this.id = id;
     }
+
+    public Set<PlasticineEntity> getChildren() {
+        return children;
+    }
+
+    public void setChildren(Set<PlasticineEntity> children) {
+        this.children = children;
+    }
+
+    public Set<PlasticineEntity> getParents() {
+        return parents;
+    }
+
+    public void setParents(Set<PlasticineEntity> parents) {
+        this.parents = parents;
+    }
 }
