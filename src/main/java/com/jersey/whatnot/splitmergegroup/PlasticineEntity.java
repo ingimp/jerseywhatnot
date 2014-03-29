@@ -54,4 +54,13 @@ public class PlasticineEntity {
     boolean isSingle() {
         return getParents().size() == 0 && getChildren().size() == 0;
     }
+
+    boolean isMiddleStatus() {
+        return getParents().size() > 0 && getChildren().size() > 0;
+    }
+
+    @Override
+    public String toString() {
+        return id.toString();
+    }
 }
