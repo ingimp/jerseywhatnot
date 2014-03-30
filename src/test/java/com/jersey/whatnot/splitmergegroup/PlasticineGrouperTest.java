@@ -51,19 +51,24 @@ public class PlasticineGrouperTest {
 
     @Test
     public void should_group_merge_split_plasticine() throws Exception {
-        //分组
-        List<List<PlasticineEntity>> plasticineGroups = new PlasticineGrouper().groupPlastines(plasticines);
-
         //15和16合并成了17
         //17被拆分成了18和19
         assertTrue(thereIsAGroupThatHasAndOnlyHas(plasticineGroups, 15, 16, 18, 19));
     }
 
     @Test
-    public void should_only_have_5_groups() throws Exception {
-        //分组结果不应该有重复，应该仅仅有5个分组
+    public void should_group_split_multiple_plasticines() throws Exception {
+        //20被拆分成了21和22
+        //21被拆分成了23和24
+        //23被拆分成了25和26
+        assertTrue(thereIsAGroupThatHasAndOnlyHas(plasticineGroups, 20, 22, 24, 25, 26));
+    }
+
+    @Test
+    public void should_only_have_6_groups() throws Exception {
+        //分组结果不应该有重复，应该仅仅有6个分组
         //参考flyway的seed脚本
-        assertThat(plasticineGroups.size(), is(5));
+        assertThat(plasticineGroups.size(), is(6));
     }
 
     private boolean thereIsAGroupThatHasAndOnlyHas(List<List<PlasticineEntity>> plasticineGroups, final Integer... ids) {
