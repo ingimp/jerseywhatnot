@@ -19,14 +19,7 @@ public class GraphWalker {
 
     public List<PlasticineEntity> walkGraph() {
         System.out.println("start waling. root: " + plasticine);
-
-        ImmutableList<PlasticineEntity> result = from(walk(plasticine)).filter(new Predicate<PlasticineEntity>() {
-            @Override
-            public boolean apply(PlasticineEntity input) {
-                return !input.isMiddleStatus();
-            }
-        }).toList();
-
+        List<PlasticineEntity> result = walk(plasticine);
         System.out.println("finished waling. root: " + plasticine);
 
         return result;

@@ -12,7 +12,7 @@ import static com.google.common.collect.Lists.newArrayList;
 
 public class PlasticineGrouper {
     public List<List<PlasticineEntity>> groupPlastines(List<PlasticineEntity> plasticines) {
-        final List<PlasticineEntity> processedPlasticines = middleStatusPlasticines(plasticines);
+        final List<PlasticineEntity> processedPlasticines = Lists.newArrayList();
 
         FluentIterable<List<PlasticineEntity>> groups = from(plasticines).transform(new Function<PlasticineEntity, List<PlasticineEntity>>() {
             @Override
@@ -32,19 +32,27 @@ public class PlasticineGrouper {
             }
         });
 
-        return groups.filter(isGroupFilled()).toList();
+        return groups
+                .filter(removeNull())
+                .transform(removeMiddleStatus())
+                .toList();
     }
 
-    private List<PlasticineEntity> middleStatusPlasticines(List<PlasticineEntity> plasticines) {
-        return Lists.newArrayList(from(plasticines).filter(new Predicate<PlasticineEntity>() {
+    private Function<List<PlasticineEntity>, List<PlasticineEntity>> removeMiddleStatus() {
+        return new Function<List<PlasticineEntity>, List<PlasticineEntity>>() {
             @Override
-            public boolean apply(PlasticineEntity input) {
-                return input.isMiddleStatus();
+            public List<PlasticineEntity> apply(List<PlasticineEntity> group) {
+                return from(group).filter(new Predicate<PlasticineEntity>() {
+                    @Override
+                    public boolean apply(PlasticineEntity plasticine) {
+                        return !plasticine.isMiddleStatus();
+                    }
+                }).toList();
             }
-        }).toList());
+        };
     }
 
-    private Predicate<List<PlasticineEntity>> isGroupFilled() {
+    private Predicate<List<PlasticineEntity>> removeNull() {
         return new Predicate<List<PlasticineEntity>>() {
             @Override
             public boolean apply(List<PlasticineEntity> group) {
