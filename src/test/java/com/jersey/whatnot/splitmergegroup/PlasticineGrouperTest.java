@@ -15,44 +15,34 @@ import static org.junit.Assert.assertTrue;
 public class PlasticineGrouperTest {
 
     private List<PlasticineEntity> plasticines;
+    private List<List<PlasticineEntity>> plasticineGroups;
 
     @Before
     public void setUp() throws Exception {
         plasticines = new PlasticineReader().readPlasticines();
+        plasticineGroups = new PlasticineGrouper().groupPlastines(plasticines);
     }
 
     @Test
     public void should_group_single_plasticine() throws Exception {
-        //分组
-        List<List<PlasticineEntity>> plasticineGroups = new PlasticineGrouper().groupPlastines(plasticines);
-
         //id为1的橡皮泥自己是一组
         assertTrue(thereIsAGroupThatHasAndOnlyHas(plasticineGroups, 1));
     }
 
     @Test
     public void should_group_split_plasticine() throws Exception {
-        //分组
-        List<List<PlasticineEntity>> plasticineGroups = new PlasticineGrouper().groupPlastines(plasticines);
-
         //2被拆分成了3和4
         assertTrue(thereIsAGroupThatHasAndOnlyHas(plasticineGroups, 2, 3, 4));
     }
 
     @Test
     public void should_group_merge_plasticine() throws Exception {
-        //分组
-        List<List<PlasticineEntity>> plasticineGroups = new PlasticineGrouper().groupPlastines(plasticines);
-
         //7是由5和6合并出来的
         assertTrue(thereIsAGroupThatHasAndOnlyHas(plasticineGroups, 5, 6, 7));
     }
 
     @Test
     public void should_group_split_merge_plasticine() throws Exception {
-        //分组
-        List<List<PlasticineEntity>> plasticineGroups = new PlasticineGrouper().groupPlastines(plasticines);
-
         //橡皮泥8拆出了9和10
         //橡皮泥11拆出了12和13
         //最后，9和12合并成了14
@@ -71,9 +61,6 @@ public class PlasticineGrouperTest {
 
     @Test
     public void should_only_have_5_groups() throws Exception {
-        //分组
-        List<List<PlasticineEntity>> plasticineGroups = new PlasticineGrouper().groupPlastines(plasticines);
-
         //分组结果不应该有重复，应该仅仅有5个分组
         //参考flyway的seed脚本
         assertThat(plasticineGroups.size(), is(5));
